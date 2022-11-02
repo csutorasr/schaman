@@ -5,6 +5,7 @@
   "scripts": {},
   "private": true,
   "devDependencies": {
+    "@nrwl/angular": "^15.0.5",
     "@nrwl/cli": "13.10.6",
     "@nrwl/react": "^15.0.5",
     "@nrwl/workspace": "13.10.6",
