@@ -1,5 +1,10 @@
 # Schaman
+
 Nice open-source packages.
+
+## Angular packages
+
+- [Breadcrumb](packages/angular/breadcrumb/README.md)
 
 This project was generated using [Nx](https://nx.dev).
 
