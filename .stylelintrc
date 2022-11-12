@@ -1,0 +1,5 @@
+{
+  "plugins": [],
+  "customSyntax": "postcss-scss",
+  "extends": ["stylelint-prettier/recommended"]
+}
