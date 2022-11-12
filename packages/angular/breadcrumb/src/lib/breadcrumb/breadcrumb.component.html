@@ -1,0 +1,14 @@
+<ng-container
+  *ngFor="
+    let breadcrumb of breadcrumbs$ | async;
+    let index = index;
+    let last = last
+  "
+>
+  <ng-container *ngTemplateOutlet="breadcrumb.template"></ng-container>
+  <ng-container *ngIf="!last && separator">
+    <ng-container
+      *ngTemplateOutlet="separator; context: { index }"
+    ></ng-container>
+  </ng-container>
+</ng-container>

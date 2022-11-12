@@ -1,5 +1,5 @@
 {
-  "extends": "@nrwl/workspace/presets/core.json",
+  "extends": "nx/presets/core.json",
   "npmScope": "schaman",
   "affected": {
     "defaultBase": "main"
@@ -36,6 +36,20 @@
     },
     "lint": {
       "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
+    },
+    "build": {
+      "inputs": ["production", "^production"]
+    }
+  },
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "sharedGlobals": [],
+    "production": ["default"]
+  },
+  "pluginsConfig": {
+    "@nrwl/js": {
+      "analyzeSourceFiles": true
     }
   }
 }
