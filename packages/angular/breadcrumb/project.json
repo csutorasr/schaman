@@ -47,7 +47,8 @@
           "angular-breadcrumb:github"
         ],
         "commitMessageFormat": "release(${projectName}): release version ${version}",
-        "noVerify": true
+        "noVerify": true,
+        "push": true
       }
     },
     "github": {
