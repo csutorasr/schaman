@@ -1,4 +1,4 @@
-# schaman-breadcrumb
+# @schaman/angular-router-params
 
 Get router parameters in the easiest way.
 
