@@ -5,7 +5,9 @@
     let last = last
   "
 >
-  <ng-container *ngTemplateOutlet="breadcrumb.template"></ng-container>
+  <ng-container
+    *ngTemplateOutlet="breadcrumb.template; context: { index, last }"
+  ></ng-container>
   <ng-container *ngIf="!last && separator">
     <ng-container
       *ngTemplateOutlet="separator; context: { index }"

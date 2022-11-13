@@ -113,4 +113,40 @@ describe('SchamanBreadcrumbModule', () => {
       expect(fixture.nativeElement.textContent).toBe('Test>0Test1>1Test2');
     });
   });
+
+  describe('with context', () => {
+    let component: ModuleTestComponent;
+    let fixture: ComponentFixture<ModuleTestComponent>;
+    @Component({
+      template: `<schaman-breadcrumb></schaman-breadcrumb><test-1></test-1>`,
+    })
+    class ModuleTestComponent {}
+    @Component({
+      template: `<p *schamanBreadcrumb="let index = index; let last = last">
+        {{ index }}{{ last }}
+      </p>`,
+      selector: 'test-1',
+      providers: [BreadcrumbOrderService],
+    })
+    class ModuleTestChild1Component {}
+
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
+        declarations: [ModuleTestComponent, ModuleTestChild1Component],
+        imports: [SchamanBreadcrumbModule.forRoot()],
+      }).compileComponents();
+
+      fixture = TestBed.createComponent(ModuleTestComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+
+    it('should render the breadcrumb', () => {
+      expect(fixture.nativeElement.textContent).toContain('0true');
+    });
+  });
 });
