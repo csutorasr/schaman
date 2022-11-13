@@ -1,4 +1,4 @@
-# schaman-breadcrumb
+# @schaman/angular-breadcrumb
 
 This module provides custom breadcrumb functionality. To use the module do 3 easy steps.
 
