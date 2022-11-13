@@ -37,6 +37,32 @@
           "packages/angular/router-params/**/*.html"
         ]
       }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "angular",
+        "postTargets": [
+          "angular-router-params:deploy",
+          "angular-router-params:github"
+        ],
+        "commitMessageFormat": "release(${projectName}): release version ${version}",
+        "noVerify": true
+      }
+    },
+    "github": {
+      "executor": "@jscutlery/semver:github",
+      "options": {
+        "tag": "${tag}",
+        "notes": "${notes}"
+      }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "access": "public",
+        "buildTarget": "production"
+      }
     }
   },
   "tags": []
