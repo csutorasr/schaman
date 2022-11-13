@@ -28,6 +28,11 @@
     },
     "@nrwl/angular:component": {
       "style": "scss"
+    },
+    "@nrwl/react": {
+      "application": {
+        "babel": true
+      }
     }
   },
   "targetDefaults": {
@@ -44,7 +49,7 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
-    "sharedGlobals": [],
+    "sharedGlobals": ["{workspaceRoot}/babel.config.json"],
     "production": ["default"]
   },
   "pluginsConfig": {
