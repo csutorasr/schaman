@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [1.1.0](https://github.com/csutorasr/schaman/compare/angular-breadcrumb-1.0.1...angular-breadcrumb-1.1.0) (2022-11-13)
+
+
+### Features
+
+* **angular-breadcrumb:** add breadcrumb context ([b69b038](https://github.com/csutorasr/schaman/commit/b69b03876a45cf265cc846a7694c7330717a4d24))
+
+
+
 ## [1.0.1](https://github.com/csutorasr/schaman/compare/angular-breadcrumb-1.0.0...angular-breadcrumb-1.0.1) (2022-11-13)
 
 
