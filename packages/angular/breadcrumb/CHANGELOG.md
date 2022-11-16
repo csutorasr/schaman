@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.1.1](https://github.com/csutorasr/schaman/compare/angular-breadcrumb-1.1.0...angular-breadcrumb-1.1.1) (2022-11-16)
+
+
+
 # [1.1.0](https://github.com/csutorasr/schaman/compare/angular-breadcrumb-1.0.1...angular-breadcrumb-1.1.0) (2022-11-13)
 
 
