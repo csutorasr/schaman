@@ -1,0 +1,13 @@
+{
+  "name": "@schaman/angular-material-error",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/cdk": "^14.2.0",
+    "@angular/common": "^14.2.0",
+    "@angular/core": "^14.2.0",
+    "@angular/material": "^14.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}
