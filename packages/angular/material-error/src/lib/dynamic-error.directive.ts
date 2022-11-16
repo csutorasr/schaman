@@ -1,27 +1,24 @@
 import {
   ChangeDetectorRef,
   Directive,
+  OnDestroy,
   OnInit,
   Optional,
   Renderer2,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import {
-  FormGroupDirective,
-  NgControl,
-  NgForm,
-  ValidationErrors,
-} from '@angular/forms';
+import { FormGroupDirective, NgForm, ValidationErrors } from '@angular/forms';
 import { MatFormField } from '@angular/material/form-field';
-import { merge } from 'rxjs';
+import { merge, Subscription } from 'rxjs';
 import { ErrorMessageProvider } from './error-message-provider';
 
 @Directive({
   selector: '[schamanDynamicError]',
 })
-export class DynamicErrorDirective implements OnInit {
+export class DynamicErrorDirective implements OnInit, OnDestroy {
   private text?: Text;
+  private subscription?: Subscription;
   public constructor(
     private readonly templateReference: TemplateRef<any>,
     private readonly viewContainer: ViewContainerRef,
@@ -42,13 +39,16 @@ export class DynamicErrorDirective implements OnInit {
     if (this.formGroupDirective) {
       observables.push(this.formGroupDirective.ngSubmit);
     }
-    merge(...observables).subscribe(() => {
+    this.subscription = merge(...observables).subscribe(() => {
       if (matFormFieldControl.errorState && ngControl?.errors) {
         this.addText(ngControl.errors);
       } else if (this.text) {
         this.removeText();
       }
     });
+  }
+  public ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 
   private removeText() {

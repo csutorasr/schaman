@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatInputModule } from '@angular/material/input';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {
   FormControl,
   ReactiveFormsModule,
@@ -22,6 +22,9 @@ import { DynamicErrorDirective } from './dynamic-error.directive';
   </mat-form-field>`,
 })
 class DirectiveTestComponent {
+  @ViewChild(DynamicErrorDirective) directive:
+    | DynamicErrorDirective
+    | undefined;
   formControl = new FormControl('', Validators.required);
 }
 
@@ -76,6 +79,18 @@ describe('DynamicErrorDirective', () => {
     await input.setValue('a');
     await input.setValue('');
     await input.setValue('a');
+    await input.blur();
+
+    expect(fixture.nativeElement.textContent).not.toContain('required');
+  });
+
+  it('should unsubscribe in on destroy', async () => {
+    const input = await loader.getHarness(MatInputHarness);
+
+    fixture.componentInstance.directive?.ngOnDestroy();
+    await input.focus();
+    await input.setValue('a');
+    await input.setValue('');
     await input.blur();
 
     expect(fixture.nativeElement.textContent).not.toContain('required');
