@@ -18,6 +18,9 @@
       "@schaman/angular-breadcrumb": [
         "packages/angular/breadcrumb/src/index.ts"
       ],
+      "@schaman/angular-material-error": [
+        "packages/angular/material-error/src/index.ts"
+      ],
       "@schaman/angular-router-params": [
         "packages/angular/router-params/src/index.ts"
       ],
