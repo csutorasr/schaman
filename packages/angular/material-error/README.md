@@ -9,9 +9,12 @@ Import the `SchamanMaterialErrorModule`.
 Provide your own `ErrorMessageProvider` to use your own messages. Pro-tip: inject other translator services.
 
 ```typescript
+@Injectable()
 export class MyFancyErrorMessageProvider extends ErrorMessageProvider {
-  public constructor(private readonly translateService: TranslateService) {}
-  public abstract getErrorMessagesFor(errors: ValidationErrors): string {
+  public constructor(private readonly translateService: TranslateService) {
+    super();
+  }
+  public getErrorMessagesFor(errors: ValidationErrors): string {
     if (errors.required) {
       return this.translateService.get('ERROR.REQUIRED');
     }
@@ -31,7 +34,7 @@ export class MyFancyErrorMessageProvider extends ErrorMessageProvider {
   providers: [
     {
       provide: ErrorMessageProvider,
-      useValue: MyFancyErrorMessageProvider,
+      useClass: MyFancyErrorMessageProvider,
     },
   ],
 })
@@ -64,7 +67,7 @@ You can also add a custom `ErrorMessageProvider` on component level to override 
   providers: [
     {
       provide: ErrorMessageProvider,
-      useValue: MyFancierErrorMessageProvider,
+      useClass: MyFancierErrorMessageProvider,
     },
   ],
 })

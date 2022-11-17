@@ -5,6 +5,7 @@ Nice open-source packages.
 ## Angular packages
 
 - [Breadcrumb](packages/angular/breadcrumb/README.md)
+- [Material error](packages/angular/material-error/README.md)
 - [Router params](packages/angular/router-params/README.md)
 
 ## React packages
