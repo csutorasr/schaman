@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [2.0.1](https://github.com/csutorasr/schaman/compare/angular-material-error-2.0.0...angular-material-error-2.0.1) (2022-11-17)
+
+
+### Bug Fixes
+
+* **angular-material-error:** export ErrorMessageProvider ([fadb909](https://github.com/csutorasr/schaman/commit/fadb909c3286fede3ac5f31a50c02962d23214fb))
+
+
+
 # [2.0.0](https://github.com/csutorasr/schaman/compare/angular-material-error-1.0.0...angular-material-error-2.0.0) (2022-11-16)
 
 
