@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [2.0.2](https://github.com/csutorasr/schaman/compare/angular-material-error-2.0.1...angular-material-error-2.0.2) (2022-11-17)
+
+
+
 ## [2.0.1](https://github.com/csutorasr/schaman/compare/angular-material-error-2.0.0...angular-material-error-2.0.1) (2022-11-17)
 
 
