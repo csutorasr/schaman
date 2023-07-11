@@ -1,11 +1,9 @@
-import { Inject, Injectable, Optional, SkipSelf } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 @Injectable()
 export class BreadcrumbOrderService {
-  public constructor(
-    @SkipSelf()
-    @Optional()
-    @Inject(BreadcrumbOrderService)
-    public readonly parent?: BreadcrumbOrderService
-  ) {}
+  public readonly parent = inject(BreadcrumbOrderService, {
+    skipSelf: true,
+    optional: true,
+  });
 }

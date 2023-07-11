@@ -12,15 +12,15 @@ describe('BreadcrumbComponent', () => {
   beforeEach(async () => {
     breadcrumbs$.next([]);
     await TestBed.configureTestingModule({
-      declarations: [BreadcrumbComponent],
+      imports: [BreadcrumbComponent],
       providers: [
         {
           provide: BreadcrumbService,
           useValue: {
             breadcrumbs$,
-          }
-        }
-      ]
+          },
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BreadcrumbComponent);

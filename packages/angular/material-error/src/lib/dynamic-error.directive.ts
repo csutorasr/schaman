@@ -1,12 +1,12 @@
 import {
+  AfterContentInit,
   ChangeDetectorRef,
   Directive,
   OnDestroy,
-  OnInit,
-  Optional,
   Renderer2,
   TemplateRef,
   ViewContainerRef,
+  inject,
 } from '@angular/core';
 import { FormGroupDirective, NgForm, ValidationErrors } from '@angular/forms';
 import { MatFormField } from '@angular/material/form-field';
@@ -15,21 +15,22 @@ import { ErrorMessageProvider } from './error-message-provider';
 
 @Directive({
   selector: '[schamanDynamicError]',
+  standalone: true,
 })
-export class DynamicErrorDirective implements OnInit, OnDestroy {
+export class DynamicErrorDirective implements AfterContentInit, OnDestroy {
   private text?: Text;
   private subscription?: Subscription;
-  public constructor(
-    private readonly templateReference: TemplateRef<any>,
-    private readonly viewContainer: ViewContainerRef,
-    private readonly renderer: Renderer2,
-    private readonly matFormField: MatFormField,
-    private readonly errorMessageProvider: ErrorMessageProvider,
-    @Optional() private readonly ngForm: NgForm,
-    @Optional() private readonly formGroupDirective: FormGroupDirective,
-    private readonly changeDetectorReference: ChangeDetectorRef
-  ) {}
-  public ngOnInit(): void {
+  private readonly templateReference = inject(TemplateRef);
+  private readonly viewContainer = inject(ViewContainerRef);
+  private readonly renderer = inject(Renderer2);
+  private readonly matFormField = inject(MatFormField);
+  private readonly errorMessageProvider = inject(ErrorMessageProvider);
+  private readonly ngForm = inject(NgForm, { optional: true });
+  private readonly formGroupDirective = inject(FormGroupDirective, {
+    optional: true,
+  });
+  private readonly changeDetectorReference = inject(ChangeDetectorRef);
+  public ngAfterContentInit(): void {
     const matFormFieldControl = this.matFormField._control;
     const ngControl = matFormFieldControl.ngControl;
     const observables = [matFormFieldControl.stateChanges];

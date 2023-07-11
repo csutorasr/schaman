@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable } from 'rxjs';
 
@@ -8,7 +8,8 @@ import { map, Observable } from 'rxjs';
 export class SchamanRouterParams {
   [parameter: string]: Observable<string>;
 
-  public constructor(activatedRoute: ActivatedRoute) {
+  public constructor() {
+    const activatedRoute = inject(ActivatedRoute);
     return new Proxy(this, {
       get: (_, name) => {
         if (name === 'ngOnDestroy') {

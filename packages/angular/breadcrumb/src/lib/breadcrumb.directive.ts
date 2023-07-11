@@ -1,4 +1,4 @@
-import { Directive, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { Directive, OnDestroy, TemplateRef, inject } from '@angular/core';
 import { BreadcrumbOrderService } from './breadcrumb-order.service';
 import { BreadcrumbElement } from './breadcrumb.interface';
 import { BreadcrumbService } from './breadcrumb.service';
@@ -10,8 +10,12 @@ interface BreadcrumbContext {
 
 @Directive({
   selector: '[schamanBreadcrumb]',
+  standalone: true,
 })
 export class BreadcrumbDirective implements BreadcrumbElement, OnDestroy {
+  public readonly template = inject(TemplateRef);
+  public readonly orderService = inject(BreadcrumbOrderService);
+  public readonly service = inject(BreadcrumbService);
   static ngTemplateContextGuard(
     directive: BreadcrumbDirective,
     context: unknown
@@ -19,11 +23,7 @@ export class BreadcrumbDirective implements BreadcrumbElement, OnDestroy {
     return true;
   }
 
-  public constructor(
-    public readonly template: TemplateRef<unknown>,
-    public readonly orderService: BreadcrumbOrderService,
-    public readonly service: BreadcrumbService
-  ) {
+  public constructor() {
     this.service.addBreadcrumb(this);
   }
   public ngOnDestroy(): void {

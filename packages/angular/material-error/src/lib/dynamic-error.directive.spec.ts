@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { MatInputModule } from '@angular/material/input';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,7 +10,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { ErrorMessageProvider } from './error-message-provider';
 import { DynamicErrorDirective } from './dynamic-error.directive';
@@ -20,48 +19,49 @@ import { DynamicErrorDirective } from './dynamic-error.directive';
     <input matInput [formControl]="formControl" />
     <mat-error *schamanDynamicError></mat-error>
   </mat-form-field>`,
+  standalone: true,
+  imports: [
+    DynamicErrorDirective,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+  ],
 })
 class DirectiveTestComponent {
-  @ViewChild(DynamicErrorDirective) directive:
+  @ViewChild(DynamicErrorDirective, { static: true }) directive:
     | DynamicErrorDirective
     | undefined;
-  formControl = new FormControl('', Validators.required);
+  public readonly formControl = new FormControl('', Validators.required);
 }
 
-describe('DynamicErrorDirective', () => {
-  let fixture: ComponentFixture<DirectiveTestComponent>;
-  let loader: HarnessLoader;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [DynamicErrorDirective, DirectiveTestComponent],
-      imports: [
-        MatInputModule,
-        MatFormFieldModule,
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-      ],
-      providers: [
-        {
-          provide: ErrorMessageProvider,
-          useValue: {
-            getErrorMessagesFor: (error: ValidationErrors) =>
-              Object.keys(error)[0],
-          },
+const render = async () => {
+  await TestBed.configureTestingModule({
+    imports: [DirectiveTestComponent, NoopAnimationsModule],
+    providers: [
+      {
+        provide: ErrorMessageProvider,
+        useValue: {
+          getErrorMessagesFor: (error: ValidationErrors) =>
+            Object.keys(error)[0],
         },
-      ],
-    }).compileComponents();
+      },
+    ],
+  }).compileComponents();
 
-    fixture = TestBed.createComponent(DirectiveTestComponent);
-    fixture.detectChanges();
-    loader = TestbedHarnessEnvironment.loader(fixture);
-  });
+  const fixture = TestBed.createComponent(DirectiveTestComponent);
+  fixture.detectChanges();
+  const loader = TestbedHarnessEnvironment.loader(fixture);
+  return { fixture, loader };
+};
 
-  it('should create', () => {
+describe('DynamicErrorDirective', () => {
+  it('should create', async () => {
+    const { fixture } = await render();
     expect(fixture.componentInstance).toBeTruthy();
   });
 
   it('should show error message', async () => {
+    const { fixture, loader } = await render();
     const input = await loader.getHarness(MatInputHarness);
 
     await input.focus();
@@ -73,6 +73,7 @@ describe('DynamicErrorDirective', () => {
   });
 
   it('should hide error message', async () => {
+    const { fixture, loader } = await render();
     const input = await loader.getHarness(MatInputHarness);
 
     await input.focus();
@@ -85,6 +86,7 @@ describe('DynamicErrorDirective', () => {
   });
 
   it('should unsubscribe in on destroy', async () => {
+    const { fixture, loader } = await render();
     const input = await loader.getHarness(MatInputHarness);
 
     fixture.componentInstance.directive?.ngOnDestroy();
