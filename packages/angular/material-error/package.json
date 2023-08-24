@@ -1,6 +1,6 @@
 {
   "name": "@schaman/angular-material-error",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "peerDependencies": {
     "@angular/cdk": ">=14.1.0 < 17.0.0",
     "@angular/common": ">=14.1.0 < 17.0.0",
