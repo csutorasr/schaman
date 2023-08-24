@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.0.1](https://github.com/csutorasr/schaman/compare/angular-router-params-3.0.0...angular-router-params-3.0.1) (2023-08-24)
+
+
+
 # [3.0.0](https://github.com/csutorasr/schaman/compare/angular-router-params-2.0.0...angular-router-params-3.0.0) (2023-07-11)
 
 
