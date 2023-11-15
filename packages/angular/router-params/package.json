@@ -2,9 +2,9 @@
   "name": "@schaman/angular-router-params",
   "version": "3.0.1",
   "peerDependencies": {
-    "@angular/common": ">=14.1.0 < 17.0.0",
-    "@angular/core": ">=14.1.0 < 17.0.0",
-    "@angular/router": ">=14.1.0 < 17.0.0",
+    "@angular/common": ">=14.1.0 < 18.0.0",
+    "@angular/core": ">=14.1.0 < 18.0.0",
+    "@angular/router": ">=14.1.0 < 18.0.0",
     "rxjs": ">=6.0.0 < 8.0.0"
   },
   "dependencies": {
