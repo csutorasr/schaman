@@ -34,7 +34,11 @@ export function useBreadcrumbSetterContext() {
   return useContext(BreadcrumbSetterContext);
 }
 
-export function BreadcrumbContextProvider({ children }: { children: any }) {
+export function BreadcrumbContextProvider({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const [breadcrumbs, setBreadcrumbs] = useState<Record<string, ReactNode>>({});
   const setChildren = useCallback(
     (id: string, children: ReactNode) =>

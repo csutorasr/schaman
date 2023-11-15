@@ -72,6 +72,7 @@ export class DynamicErrorDirective implements AfterContentInit, OnDestroy {
   private createTextNodeIfNeeded(text: Text | undefined): text is Text {
     if (!this.text) {
       this.viewContainer.createEmbeddedView(this.templateReference);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const elementReference = (this.viewContainer.get(0) as any).rootNodes[0];
       this.text = this.renderer.createText('');
       this.renderer.appendChild(elementReference, this.text);
