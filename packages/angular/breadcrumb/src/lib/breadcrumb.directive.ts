@@ -18,7 +18,7 @@ export class BreadcrumbDirective implements BreadcrumbElement, OnDestroy {
   public readonly service = inject(BreadcrumbService);
   static ngTemplateContextGuard(
     directive: BreadcrumbDirective,
-    context: unknown
+    context: unknown,
   ): context is BreadcrumbContext {
     return true;
   }

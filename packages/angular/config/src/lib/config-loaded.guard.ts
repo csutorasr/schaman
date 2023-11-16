@@ -1,4 +1,8 @@
-import { CanActivateChildFn, CanActivateFn, CanMatchFn } from '@angular/router';
+import type {
+  CanActivateChildFn,
+  CanActivateFn,
+  CanMatchFn,
+} from '@angular/router';
 import { ConfigService } from './config.service';
 import { inject } from '@angular/core';
 import { map } from 'rxjs';

@@ -10,7 +10,7 @@ describe('BreadcrumbModule', () => {
       <BreadcrumbContextProvider>
         <Breadcrumb>Test</Breadcrumb>
         <BreadcrumbRenderer></BreadcrumbRenderer>
-      </BreadcrumbContextProvider>
+      </BreadcrumbContextProvider>,
     );
     expect(baseElement.textContent).toBe('Test');
   });
@@ -19,7 +19,7 @@ describe('BreadcrumbModule', () => {
     const { baseElement } = render(
       <BreadcrumbContextProvider>
         <Breadcrumb>Test</Breadcrumb>
-      </BreadcrumbContextProvider>
+      </BreadcrumbContextProvider>,
     );
     expect(baseElement.textContent).not.toBe('Test');
   });
@@ -28,7 +28,7 @@ describe('BreadcrumbModule', () => {
     const { baseElement } = render(
       <BreadcrumbContextProvider>
         <BreadcrumbRenderer></BreadcrumbRenderer>
-      </BreadcrumbContextProvider>
+      </BreadcrumbContextProvider>,
     );
     expect(baseElement.textContent).not.toBe('Test');
   });
@@ -41,7 +41,7 @@ describe('BreadcrumbModule', () => {
           <Breadcrumb>Test</Breadcrumb>
         </div>
         <BreadcrumbRenderer></BreadcrumbRenderer>
-      </BreadcrumbContextProvider>
+      </BreadcrumbContextProvider>,
     );
     expect(baseElement.textContent).toBe('TestTest');
   });
@@ -54,7 +54,7 @@ describe('BreadcrumbModule', () => {
           <Breadcrumb>Test2</Breadcrumb>
         </div>
         <BreadcrumbRenderer></BreadcrumbRenderer>
-      </BreadcrumbContextProvider>
+      </BreadcrumbContextProvider>,
     );
     expect(baseElement.textContent).toBe('Test1Test2');
   });

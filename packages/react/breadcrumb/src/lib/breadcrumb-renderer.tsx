@@ -5,7 +5,7 @@ export function BreadcrumbRenderer(
   props: React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
-  >
+  >,
 ) {
   const { breadcrumbs } = useBreadcrumbGetterContext();
   return (

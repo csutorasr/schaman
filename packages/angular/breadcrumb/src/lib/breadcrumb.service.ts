@@ -16,7 +16,7 @@ export class BreadcrumbService {
       const index = breadcrumbs.findIndex(
         (b) =>
           b.orderService.parent ===
-          orderedBreadcrumbs[orderedBreadcrumbs.length - 1].orderService
+          orderedBreadcrumbs[orderedBreadcrumbs.length - 1].orderService,
       );
       orderedBreadcrumbs.push(...breadcrumbs.splice(index, 1));
     }
@@ -25,7 +25,7 @@ export class BreadcrumbService {
 
   public removeBreadcrumb(breadcrumb: BreadcrumbElement) {
     this.breadcrumbs.next(
-      this.breadcrumbs.value.filter((b) => b !== breadcrumb)
+      this.breadcrumbs.value.filter((b) => b !== breadcrumb),
     );
   }
 }
