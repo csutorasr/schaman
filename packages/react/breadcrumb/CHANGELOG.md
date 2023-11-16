@@ -4,35 +4,25 @@ This file was generated using [@jscutlery/semver](https://github.com/jscutlery/s
 
 ## [2.0.1](https://github.com/csutorasr/schaman/compare/react-breadcrumb-2.0.0...react-breadcrumb-2.0.1) (2023-08-24)
 
-
-
 # [2.0.0](https://github.com/csutorasr/schaman/compare/react-breadcrumb-1.0.0...react-breadcrumb-2.0.0) (2023-07-11)
-
 
 ### Features
 
-* add angular 16 support and migrate to standalone components ([c7315b6](https://github.com/csutorasr/schaman/commit/c7315b662e96b349bd8047212f0ab275490d1585))
-
+- add angular 16 support and migrate to standalone components ([c7315b6](https://github.com/csutorasr/schaman/commit/c7315b662e96b349bd8047212f0ab275490d1585))
 
 ### BREAKING CHANGES
 
-* add angular 16 support
-
-
+- add angular 16 support
 
 # [2.0.0](https://github.com/csutorasr/schaman/compare/react-breadcrumb-1.0.0...react-breadcrumb-2.0.0) (2023-07-11)
 
-
 ### Features
 
-* add angular 16 support and migrate to standalone components ([c7315b6](https://github.com/csutorasr/schaman/commit/c7315b662e96b349bd8047212f0ab275490d1585))
-
+- add angular 16 support and migrate to standalone components ([c7315b6](https://github.com/csutorasr/schaman/commit/c7315b662e96b349bd8047212f0ab275490d1585))
 
 ### BREAKING CHANGES
 
-* add angular 16 support
-
-
+- add angular 16 support
 
 # 1.0.0 (2022-11-13)
 

@@ -43,7 +43,7 @@ export function BreadcrumbContextProvider({
   const setChildren = useCallback(
     (id: string, children: ReactNode) =>
       setBreadcrumbs((current) => ({ ...current, [id]: children })),
-    []
+    [],
   );
   const removeChildren = useCallback(
     (id: string) =>
@@ -52,20 +52,20 @@ export function BreadcrumbContextProvider({
         delete n[id];
         return n;
       }),
-    []
+    [],
   );
   const setterValue = useMemo(
     () => ({
       setChildren,
       removeChildren,
     }),
-    [removeChildren, setChildren]
+    [removeChildren, setChildren],
   );
   const getterValue = useMemo(
     () => ({
       breadcrumbs,
     }),
-    [breadcrumbs]
+    [breadcrumbs],
   );
   return (
     <BreadcrumbGetterContext.Provider value={getterValue}>
