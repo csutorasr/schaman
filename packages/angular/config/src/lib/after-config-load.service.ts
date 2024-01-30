@@ -2,7 +2,7 @@ import { Injectable, InjectionToken, inject } from '@angular/core';
 import { Observable, Subscribable } from 'rxjs';
 
 export const AFTER_CONFIG_LOAD = new InjectionToken<
-  ReadonlyArray<() => Observable<unknown> | Promise<unknown> | void>
+  readonly (() => Observable<unknown> | Promise<unknown> | void)[]
 >('After config load');
 
 @Injectable()
@@ -12,7 +12,7 @@ export class AfterConfigLoadService {
 
   private initialized = false;
   public readonly done = false;
-  public readonly donePromise: Promise<unknown> = new Promise((res, rej) => {
+  public readonly donePromise = new Promise<unknown>((res, rej) => {
     this.resolve = res;
     this.reject = rej;
   });

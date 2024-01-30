@@ -29,13 +29,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": [
-          "packages/angular/breadcrumb/**/*.ts",
-          "packages/angular/breadcrumb/**/*.html"
-        ]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "version": {
       "executor": "@jscutlery/semver:version",
