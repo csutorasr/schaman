@@ -133,6 +133,19 @@ import { ConfigService } from '@schaman/angular-config';
 export class AppModule {}
 ```
 
+If you would like to execute code after the config is loaded, you can use the `AFTER_CONFIG_LOAD` provider token just like the `APP_INITIALIZER`.
+Note: `runAsAppInitializer` must be set to `true` for this to work.
+
+```typescript
+providers: [
+  {
+    provide: AFTER_CONFIG_LOAD,
+    useFactory: (store: Store) => () => store.dispatch(loadProfile())
+    deps: [Store],
+  },
+],
+```
+
 ### Configure your generated backend base url
 
 If you generate the backend using [openapi-generator](https://github.com/OpenAPITools/openapi-generator) then provide the values like this:

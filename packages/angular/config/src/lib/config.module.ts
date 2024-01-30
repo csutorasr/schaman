@@ -1,9 +1,11 @@
 import { APP_INITIALIZER, NgModule, inject } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 import { ConfigService } from './config.service';
 import {
   CONFIGURATION,
   ConfigModuleConfiguration,
 } from './configuration.token';
+import { AfterConfigLoadService } from './after-config-load.service';
 
 @NgModule({})
 export class ConfigModule {
@@ -18,6 +20,7 @@ export class ConfigModule {
       ngModule: ConfigModule,
       providers: [
         ConfigService,
+        AfterConfigLoadService,
         {
           provide: CONFIGURATION,
           useValue: {
@@ -35,6 +38,22 @@ export class ConfigModule {
                   configService.loadConfig(),
                 multi: true,
                 deps: [ConfigService],
+              },
+              {
+                provide: APP_INITIALIZER,
+                useFactory: (
+                  configService: ConfigService<unknown>,
+                  afterConfigLoadService: AfterConfigLoadService,
+                ) => {
+                  return () =>
+                    firstValueFrom(configService.afterConfigLoad$).then(() => {
+                      afterConfigLoadService.runAfterConfigLoadProviders();
+
+                      return afterConfigLoadService.donePromise;
+                    });
+                },
+                deps: [ConfigService, AfterConfigLoadService],
+                multi: true,
               },
             ]
           : []),
