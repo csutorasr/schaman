@@ -2,13 +2,20 @@ import {
   AfterContentInit,
   ChangeDetectorRef,
   Directive,
+  Input,
   OnDestroy,
   Renderer2,
   TemplateRef,
   ViewContainerRef,
   inject,
+  isDevMode,
 } from '@angular/core';
-import { FormGroupDirective, NgForm, ValidationErrors } from '@angular/forms';
+import {
+  AbstractControl,
+  FormGroupDirective,
+  NgForm,
+  ValidationErrors,
+} from '@angular/forms';
 import { MatFormField } from '@angular/material/form-field';
 import { merge, Subscription } from 'rxjs';
 import { ErrorMessageProvider } from './error-message-provider';
@@ -18,12 +25,16 @@ import { ErrorMessageProvider } from './error-message-provider';
   standalone: true,
 })
 export class DynamicErrorDirective implements AfterContentInit, OnDestroy {
+  @Input({
+    alias: 'schamanDynamicError',
+  })
+  private formControl: AbstractControl | undefined;
   private text?: Text;
   private subscription?: Subscription;
   private readonly templateReference = inject(TemplateRef);
   private readonly viewContainer = inject(ViewContainerRef);
   private readonly renderer = inject(Renderer2);
-  private readonly matFormField = inject(MatFormField);
+  private readonly matFormField = inject(MatFormField, { optional: true });
   private readonly errorMessageProvider = inject(ErrorMessageProvider);
   private readonly ngForm = inject(NgForm, { optional: true });
   private readonly formGroupDirective = inject(FormGroupDirective, {
@@ -31,9 +42,22 @@ export class DynamicErrorDirective implements AfterContentInit, OnDestroy {
   });
   private readonly changeDetectorReference = inject(ChangeDetectorRef);
   public ngAfterContentInit(): void {
-    const matFormFieldControl = this.matFormField._control;
-    const ngControl = matFormFieldControl.ngControl;
-    const observables = [matFormFieldControl.stateChanges];
+    const observables = [];
+    if (!this.matFormField && !this.formControl) {
+      if (isDevMode()) {
+        console.warn(
+          'No form control provided. Please provide a form control or a mat form field.',
+        );
+      }
+    }
+    const matFormFieldControl = this.matFormField?._control;
+    const ngControl = matFormFieldControl?.ngControl;
+    if (matFormFieldControl) {
+      observables.push(matFormFieldControl.stateChanges);
+    }
+    if (this.formControl) {
+      observables.push(this.formControl.statusChanges);
+    }
     if (this.ngForm) {
       observables.push(this.ngForm.ngSubmit);
     }
@@ -41,8 +65,9 @@ export class DynamicErrorDirective implements AfterContentInit, OnDestroy {
       observables.push(this.formGroupDirective.ngSubmit);
     }
     this.subscription = merge(...observables).subscribe(() => {
-      if (matFormFieldControl.errorState && ngControl?.errors) {
-        this.addText(ngControl.errors);
+      const errors = this.formControl?.errors ?? ngControl?.errors;
+      if ((matFormFieldControl?.errorState ?? true) && errors) {
+        this.addText(errors);
       } else if (this.text) {
         this.removeText();
       }
