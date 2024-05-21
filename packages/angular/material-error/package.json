@@ -6,9 +6,11 @@
     "@angular/common": ">=14.1.0 < 18.0.0",
     "@angular/core": ">=14.1.0 < 18.0.0",
     "@angular/forms": ">=14.1.0 < 18.0.0",
-    "@angular/material": ">=14.1.0 < 18.0.0",
     "@angular/platform-browser": ">=14.1.0 < 18.0.0",
     "rxjs": ">=6.0.0 < 8.0.0"
+  },
+  "optionalDependencies": {
+    "@angular/material": ">=14.1.0 < 18.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
